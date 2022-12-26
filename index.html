@@ -1,38 +1,100 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="lib/p5.min.js"></script>
-    <script src="lib/p5.dom.js"></script>
+    <head>
+        <!--meta and title-->
+        <meta charset="utf-8">
+        <title>Drawing App</title>
 
-    <script src="sketch.js"></script>
+        <!--adding favicon-->
+        <!--Citation for favicon: Icons8, Year Published: Not Available, [Online], Available:  https://icons8.com/icon/McsqolxUMckC/external-paint-elearning-and-education-justicon-flat-justicon [Accessed: 23 June, 2022]-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 
-    <!-- add extra scripts below -->
-    <script src="toolbox.js"></script>
-    <script src="colourPalette.js"></script>
-    <script src="helperFunctions.js"></script>
+        <!--importing stylesheet-->
+        <link rel="stylesheet" href="styles/style.css">
 
-    <script src="tools/freehandTool.js"></script>
-    <script src="tools/lineToTool.js"></script>
-    <script src="tools/sprayCanTool.js"></script>
-    <script src="tools/mirrorDrawTool.js"></script>
-    <script src="tools/bucketTool.js"></script>
-    <script src="tools/shapeTool.js"></script>
-    <script src="tools/eraserTool.js"></script>
-    <script src="tools/autoDrawTool.js"></script>
+        <!--importing p5 libraies-->
+        <script src="libraries/p5.js"></script>
+        <script src="libraries/p5.dom.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
-  	<div class="wrapper">
-      <div class="box header">My Drawing App
+        <!--importing sketch.js and helper functions that include clear, save and undo button-->
+        <script src="sketch.js"></script>
+        <script src="helper-functions.js"></script>
 
-        <button id="clearButton">Clear</button>
-        <button id="saveImageButton">Save Image</button>
-      </div>
-      <div class="box" id="sidebar"></div>
-      <div id="content"></div>
-      <div class="box colourPalette"></div>
-      <div class="box options"></div>
-	</div>
-  </body>
+        <!--importing toolBox and tool scripts-->
+        <script src="tool-box.js"></script>
+        <script src="drawing-tools/arrow-tool.js"></script>
+        <script src="drawing-tools/bucket-fill-tool.js"></script>
+        <script src="drawing-tools/editable-polygon-tool.js"></script>
+        <script src="drawing-tools/ellipse-tool.js"></script>
+        <script src="drawing-tools/eraser-tool.js"></script>
+        <script src="drawing-tools/flower-tool.js"></script>
+        <script src="drawing-tools/free-hand-tool.js"></script>
+        <script src="drawing-tools/heart-tool.js"></script>
+        <script src="drawing-tools/isosceles-triangle-tool.js"></script>
+        <script src="drawing-tools/kaleidoscope-tool.js"></script>
+        <script src="drawing-tools/line-to-tool.js"></script>
+        <script src="drawing-tools/mirror-draw-tool.js"></script>
+        <script src="drawing-tools/rainbow-pen-tool.js"></script>
+        <script src="drawing-tools/rectangle-tool.js"></script>
+        <script src="drawing-tools/regular-polygon-tool.js"></script>
+        <script src="drawing-tools/right-triangle-tool.js"></script>
+        <script src="drawing-tools/spirograph-tool.js"></script>
+        <script src="drawing-tools/spray-can-tool.js"></script>
+        <script src="drawing-tools/stamp-tool.js"></script>
+        <script src="drawing-tools/star-tool.js"></script>
+        <script src="drawing-tools/text-tool.js"></script>
+
+        <!--importing tool properties scripts-->
+        <script src="tool-properties/fill-color.js"></script>
+        <script src="tool-properties/stroke-color.js"></script>
+        <script src="tool-properties/stroke-weight.js"></script>
+    </head>
+
+    <body>
+        <main>
+            <header>
+                <span>My Drawing App</span>
+                <!--helper buttons-->
+                <button id="saveImageButton">Save</button>
+                <button id="clearButton">Clear</button>
+                <button id="undoButton">Undo</button>
+            </header>
+
+            <!--includes divs which contains some parameters which could be used to determine certain properties of the drawing tools-->
+            <section id="parameters">
+                <div class="parameterDivs fontProperties" id="fontTypeId"><span>Font Type</span></div>
+                <div class="parameterDivs fontProperties" id="fontSizeId"><span>Font Size</span></div>
+                <div class="parameterDivs fontProperties" id="fontColorId"><span>Font Color</span></div>
+                <div class="parameterDivs fontProperties" id="inputTextId"><span>Enter the text you want to type</span></div>
+                <div class="parameterDivs polygonC eraserC rectangleC ellipseC starC heartC triangleC flowerC arrowC" id="fillColorId"><span>Fill Color</span></div>
+                <div class="parameterDivs polygonC freeHandC lineToC sprayCanC mirrorC rectangleC ellipseC starC arrowC heartC triangleC flowerC regularC kaleidoscopeC spirographC" id="strokeColorId"><span>Stroke Color</span></div>
+                <div class="parameterDivs rainbowC polygonC freeHandC lineToC sprayCanC mirrorC rectangleC arrowC ellipseC starC heartC flowerC triangleC regularC kaleidoscopeC spirographC" id="strokeWeightId"><span>Stroke Weight</span></div>
+                <div class="parameterDivs options mirrorC" id="mirrorTool"></div>
+                <div class="parameterDivs sprayCanC" id="spreadSliderId"><span>Spray Can Size</span></div>
+                <div class="parameterDivs sprayCanC" id ="densitySliderId"><span>Spray Density</span></div>
+                <div class="parameterDivs eraserC" id="eraserSizeId"><span>Eraser Size</span></div>
+                <div class="parameterDivs bucketFillC" id="bucketFillId"><span>Fill Color</span></div>
+                <div class="parameterDivs starC" id="cornersId"><span>No. of Corners</span></div>
+                <div class="parameterDivs polygonC" id="editId"></div>
+                <div class="parameterDivs polygonC" id="finishId"></div>
+                <div class="parameterDivs stampC" id = "stampTypeId">Select Stamp Type</div>
+                <div class="parameterDivs stampC" id = "stampSizeId">Stamp Size</div>
+                <div class="parameterDivs regularC" id="regularCornerId">Number of Sides</div>
+                <div class="parameterDivs kaleidoscopeC" id="mirrorNumId">Number of Mirrors</div>
+                <div class="parameterDivs flowerC" id="petalNumId">Number of Petals</div>
+                <div class="parameterDivs flowerC" id="flowerSizeId">Flower Size</div>
+                <div class="parameterDivs spirographC" id ="scaleSizeId">Scale Diagram</div>
+                <div class="parameterDivs spirographC" id ="incrRateId">Increment Rate</div>
+                <div class="parameterDivs spirographC" id ="outerRadiusId">Outer Radius(R)</div>
+                <div class="parameterDivs spirographC" id = "innerRadiusId">Inner Radius(r)</div>
+                <div class="parameterDivs spirographC" id = "penDistId">Pen distance(p)</div>
+            </section>
+
+            <!--here all the drawing tools will be diaplayed-->
+            <section id="sidebar"></section>
+            
+            <!--space to insert canvas-->
+            <section id="content"></section>
+        </main>
+    </body>
 </html>

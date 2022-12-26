@@ -1,0 +1,83 @@
+html, body {
+  margin: 0px;
+  height: 100%;
+  font-size: 1.1rem;
+}
+main{
+	background-color: #444;
+}
+
+.sideBarItem{
+	max-height: 40px;
+	max-width: 40px;
+	padding:5px;
+	margin: 0.2rem auto;
+}
+
+.sideBarItem img{
+	max-height: 40px;
+	max-Width:40px;
+}
+
+
+main{
+	display: grid;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	grid-template-columns: 80px 200px  minmax(300px, 1fr);
+	grid-template-rows: 40px 80px minmax(220px, 1fr) minmax(300px, 1fr);
+	grid-template-areas:
+		"header header header"
+		"parameters parameters parameters"
+		"sidebar content content"
+		"sidebar content content"
+		"sidebar content content";
+
+	background-color: #fff;
+	color: #444;
+}
+
+header{
+	background-color: #444;
+	grid-area: header;
+	margin: 0;
+}
+
+#parameters{
+	background-color: rgba(153, 153, 153, 0.289);
+	grid-area: parameters;
+	display: flex;
+	overflow-x: auto;
+	margin: 0;
+}
+
+.parameterDivs{
+	border: solid 2px black;
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	margin: 0.2rem;
+}
+#sidebar{
+	background-color: aliceblue;
+	grid-area: sidebar;
+	height: 100%;
+	overflow-y: auto;
+	margin: 0;
+}
+#content{
+	margin: 0;
+	grid-area: content;
+	height: 100%;
+	background-color: #444;
+}
+
+header span{
+	color: #ffffff;
+	display: inline;
+	font-family:Georgia, 'Times New Roman', Times, serif;
+	font-size: 1.5rem;
+}
+
+
